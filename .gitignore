@@ -2,6 +2,7 @@
 # http://git-scm.com/docs/gitignore
 
 .io-config.json
+ionic.config.json
 
 *~
 *.sw[mnpcod]
