@@ -9,9 +9,12 @@ import { AlertController } from 'ionic-angular';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController, public alertCtrl: AlertController) {
+  url: string;
 
+  constructor(public navCtrl: NavController, public alertCtrl: AlertController) {
+    this.url = 'http://www.cnn.com';
   }
+
   ionViewDidLoad() {
     let prompt = this.alertCtrl.create({
       title: 'Load Url',
@@ -19,7 +22,7 @@ export class HomePage {
       inputs: [
         {
           name: 'url',
-          placeholder: 'http://www.cnn.com'
+          placeholder: this.url
         },
       ],
       buttons: [
@@ -27,16 +30,24 @@ export class HomePage {
           text: 'Cancel',
           handler: data => {
             console.log('Cancel clicked: ' + data.url);
+            this.loadUrl();
           }
         },
         {
           text: 'Save',
           handler: data => {
             console.log('Saved clicked: ' + data.url);
+            this.url = data.url;
+            this.loadUrl();
           }
         }
       ]
     });
     prompt.present();
   }
+
+  loadUrl() {
+    console.log('loading ' + this.url);
+  }
+
 }
