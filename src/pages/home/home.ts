@@ -16,10 +16,12 @@ import { AlertController } from 'ionic-angular';
 export class HomePage {
 
   url: string;
+  imgs: string[];
 
   constructor(private navCtrl: NavController, private alertCtrl: AlertController, private http: Http, private txSvc: TxService) {
     // this.url = 'http://www.cnn.com';
     this.url = '/proxy';
+    this.imgs = [];
   }
 
   ionViewDidLoad() {
@@ -58,7 +60,7 @@ export class HomePage {
     console.log('loading ' + this.url);
     this.txSvc.getImgUrls(this.url)
       .subscribe(
-        data => console.log('urls', data.urls),
+        data => this.imgs = data.urls,
         error => console.log('err:', error)
         )
   }
