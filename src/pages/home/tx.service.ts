@@ -22,6 +22,9 @@ export class TxService {
     var urls = res.text().match(/['\"]https?:[^\s]+['\"]/g);
     urls = urls
             .filter(str => str.indexOf("image")!=-1)
+            .filter(str => str.indexOf("30x30")==-1)
+            .filter(str => str.indexOf("60x60")==-1)
+            .filter(str => str.indexOf("?site=")==-1)
             .map(str => str.substring(1, str.length-1) );
     console.log('urls.length:', urls.length);
     return {urls: urls};
