@@ -6,6 +6,10 @@
 
 <ion-content padding>
 
+  <ion-card><ion-item>
+    Cards Found: {{imgs.length}}
+  </ion-item></ion-card>
+
   <ion-card *ngFor="let img of imgs; let i = index" (swipe)="swipe($event,i)"><ion-item>
     <img [src]="img">
   </ion-item></ion-card>
