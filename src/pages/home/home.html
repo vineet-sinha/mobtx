@@ -6,18 +6,6 @@
 
 <ion-content padding>
 
-  <ion-card><ion-item>
-      Tapped:  times
-  </ion-item></ion-card>
-
-  <ion-card><ion-item>
-      Tapped2:  times
-  </ion-item></ion-card>
-
-  <ion-card><ion-item>
-      Tapped3:  times
-  </ion-item></ion-card>
-
   <ion-card *ngFor="let img of imgs; let i = index" (swipe)="swipe($event,i)"><ion-item>
     <img [src]="img">
   </ion-item></ion-card>
