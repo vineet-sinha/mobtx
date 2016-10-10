@@ -56,6 +56,11 @@ export class HomePage {
     this.loadUrl(); // <-- short cut so that we can test loading the page
   }
 
+  public swipe(e, ndx) {
+    // console.log('swipe', e.angle, ndx);
+    this.imgs.splice(ndx, 1);
+  }
+
   private loadUrl() {
     console.log('loading ' + this.url);
     this.txSvc.getImgUrls(this.url)

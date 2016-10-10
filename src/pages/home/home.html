@@ -18,8 +18,8 @@
       Tapped3:  times
   </ion-item></ion-card>
 
-  <ion-card *ngFor="let img of imgs"><ion-item>
-    {{img}}
+  <ion-card *ngFor="let img of imgs; let i = index" (swipe)="swipe($event,i)"><ion-item>
+    <img [src]="img">
   </ion-item></ion-card>
 
 </ion-content>
