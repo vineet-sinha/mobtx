@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { Storage } from '@ionic/storage';
 import { IonicApp, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { AboutPage } from '../pages/about/about';
@@ -25,6 +26,6 @@ import { TabsPage } from '../pages/tabs/tabs';
     HomePage,
     TabsPage
   ],
-  providers: []
+  providers: [Storage]
 })
 export class AppModule {}

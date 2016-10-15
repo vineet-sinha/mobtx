@@ -4,7 +4,7 @@ import { Http }    from '@angular/http';
 import { TxService } from '../home/tx.service';
 
 
-
+import { Storage } from '@ionic/storage';
 import { NavController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 
@@ -18,9 +18,26 @@ export class HomePage {
   url: string;
   imgs: string[];
 
-  constructor(private navCtrl: NavController, private alertCtrl: AlertController, private http: Http, private txSvc: TxService) {
+  constructor(
+    private navCtrl: NavController, 
+    private alertCtrl: AlertController, 
+    private http: Http, 
+    private txSvc: TxService, 
+    private storage: Storage) {
+
+    this.url = '';
+    this.storage.get('url').then((data) => {
+      if (data != null) {
+        this.url = data;
+      } else {
+        this.url = 'http://www.cnn.com';
+        this.storage.set('url', this.url);
+      }
+    });
+
     // this.url = 'http://www.cnn.com';
-    this.url = '/proxy';
+    // this.url = '/proxy';
+    // this.storage.set('url', this.url);
     this.imgs = [];
   }
 
@@ -47,12 +64,13 @@ export class HomePage {
           handler: data => {
             console.log('Saved clicked: ' + data.url);
             this.url = data.url;
+            this.storage.set('url', data.url);
             this.loadUrl();
           }
         }
       ]
     });
-    // prompt.present();
+    prompt.present();
     this.loadUrl(); // <-- short cut so that we can test loading the page
   }
 
