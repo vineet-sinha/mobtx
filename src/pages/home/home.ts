@@ -63,8 +63,10 @@ export class HomePage {
           text: 'Save',
           handler: data => {
             console.log('Saved clicked: ' + data.url);
-            this.url = data.url;
-            this.storage.set('url', data.url);
+            if (data.url != '') {
+              this.url = data.url;
+              this.storage.set('url', data.url);
+            }
             this.loadUrl();
           }
         }
