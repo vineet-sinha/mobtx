@@ -78,7 +78,43 @@ export class HomePage {
 
   public swipe(e, ndx) {
     // console.log('swipe', e.angle, ndx);
-    this.imgs.splice(ndx, 1);
+
+    // swipe angle is 90deg each side - split into 3 zones
+
+    // swipe to the right:: 0: -15 to 15 ==> remove
+    if (e.angle>=-15 && e.angle<=15) {
+      this.imgs.splice(ndx, 1);
+    }
+
+    // swipe to the top right:: -45: -45 to -15 ==> send to top
+    if (e.angle>=-45 && e.angle<=-15) {
+      var old = this.imgs.splice(ndx, 1);
+      this.imgs.unshift(old);
+    }
+
+    // swipe to the bottom right::  45: 45 to 15 ==> send to bottom
+    if (e.angle>=15 && e.angle<=45) {
+      var old = this.imgs.splice(ndx, 1);
+      this.imgs.push(old);
+    }
+
+    // swipe to to the left:: 180: +/-165 to 180 ==> remove
+    if (Math.abs(e.angle)>=165) {
+      this.imgs.splice(ndx, 1);
+    }
+
+    // swipe to the bottom left:: 135: 135 to 165 ==> send to bottom
+    if (e.angle>=135 && e.angle<=165) {
+      var old = this.imgs.splice(ndx, 1);
+      this.imgs.push(old);
+    }
+
+    // swipe to the top right::-135: -135 to -165 ==> send to top
+    if (e.angle>=-165 && e.angle<=-135) {
+      var old = this.imgs.splice(ndx, 1);
+      this.imgs.unshift(old);
+    }
+
   }
 
   private loadUrl() {
