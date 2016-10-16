@@ -82,12 +82,15 @@ export class HomePage {
   }
 
   private loadUrl() {
+    this.imgs = [];
     console.log('loading ' + this.url);
     this.txSvc.getImgUrls(this.url)
       .subscribe(
-        data => this.imgs = data.urls,
+        data => {
+          if (this.imgs.length<100) this.imgs = this.imgs.concat(data.urls);
+        },
         error => console.log('err:', error)
-        )
+      );
   }
 
 }
