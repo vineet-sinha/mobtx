@@ -48,7 +48,7 @@ export class TxService {
   private extractContent(res: Response) {
     if (!res) {
       console.log('res is not defined');
-      return {urls: ['res is not defined'], next: ['res is not defined']};
+      return {urls: ['res is not defined']};
     }
     var urls = res.text().match(/['\"]https?:[^\s]+['\"]/g);
     if (urls == null) urls = [];
