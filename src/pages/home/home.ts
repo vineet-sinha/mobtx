@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Http }    from '@angular/http';
 
-import { TxService } from '../home/tx.service';
+import { TxService } from '../../services/tx.service';
 
 
 import { Storage } from '@ionic/storage';
